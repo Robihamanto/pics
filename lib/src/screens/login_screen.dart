@@ -33,7 +33,7 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin{
             Container(margin: EdgeInsets.only(bottom: 20.0),),
             passwordField(bloc),
             Container(margin: EdgeInsets.only(bottom: 20.0),),
-            buttonField(),
+            buttonField(bloc),
           ],
         ),
       ),
@@ -73,14 +73,16 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin{
       );
     }
 
-  Widget buttonField() {
-    return RaisedButton(
-      child: Text('Submit'),
-      onPressed: () {
-        if (formKey.currentState.validate()) {
-          formKey.currentState.save();
-        }
-    });
+  Widget buttonField(Bloc bloc) {
+    return StreamBuilder(
+      stream: bloc.isValid,
+        builder: (context, snapshot) {
+          return RaisedButton(
+              child: Text('Submit'),
+              onPressed: snapshot.hasData ? () {
+                bloc.submit();
+              } : null);
+        },);
   }
 
 }
