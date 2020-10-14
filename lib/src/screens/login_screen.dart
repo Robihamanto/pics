@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pics/src/blocs/bloc.dart';
 import 'package:pics/src/mixins/validation_mixin.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -43,34 +44,37 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin{
   }
 
   Widget emailField() {
-    return TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-        labelText: 'Email Address',
-        hintText: 'you@example.com'
-      ),
-      validator: validateEmail,
-      onSaved: (newValue) {
-        print(newValue);
-      },
+    return StreamBuilder(
+      stream: bloc.email,
+      builder: (context, snapshot) {
+      return TextField(
+        onChanged: bloc.changeEmail,
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+            labelText: 'Email Address',
+            hintText: 'you@example.com',
+            errorText: snapshot.error,
+        ),
+      );
+    },
     );
   }
 
   Widget passwordField() {
-    return TextFormField(
-      obscureText: true,
-      keyboardType: TextInputType.visiblePassword,
-      decoration: InputDecoration(
-          labelText: 'Password',
-          hintText: 'Password',
-      ),
-      // ignore: missing_return
-      validator: validatePassword,
-      onSaved: (newValue) {
-        print(newValue);
-      },
-    );
-  }
+      return StreamBuilder(
+        stream: bloc.password,
+        builder: (context, snapshot) {
+          return TextField(
+            onChanged: bloc.changePassword,
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+              labelText: 'Password',
+              errorText: snapshot.error,
+            ),
+          );
+        },
+      );
+    }
 
   Widget buttonField() {
     return RaisedButton(

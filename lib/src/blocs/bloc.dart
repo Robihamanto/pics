@@ -3,8 +3,8 @@ import 'package:pics/src/blocs/validators.dart';
 
 class Bloc extends Validators{
 
-  final _email = StreamController<String>();
-  final _password = StreamController<String>();
+  final _email = StreamController<String>.broadcast();
+  final _password = StreamController<String>.broadcast();
 
   // Change data
   Function(String) get changeEmail => _email.sink.add;
@@ -20,3 +20,5 @@ class Bloc extends Validators{
   }
 
 }
+
+final bloc = Bloc();
