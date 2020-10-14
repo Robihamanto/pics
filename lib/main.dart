@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pics/src/scenes/gallery_scene.dart';
+import 'package:pics/src/App.dart';
 
 main() {
-  runApp(GalleryScene());
+  runApp(App());
 }
