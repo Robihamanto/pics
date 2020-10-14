@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pics/src/blocs/Provider.dart';
 import 'package:pics/src/blocs/bloc.dart';
 import 'package:pics/src/mixins/validation_mixin.dart';
 
@@ -18,32 +19,28 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin{
 
   @override
   Widget build(BuildContext context) {
-      return MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text('Do Login'),
-          ),
-          body: Container(
-            margin: EdgeInsets.all(20.0),
-            child: Form(
-              key: formKey,
-              child: Column(
-                children: [
-                  Container(margin: EdgeInsets.only(bottom: 20.0),),
-                  emailField(),
-                  Container(margin: EdgeInsets.only(bottom: 20.0),),
-                  passwordField(),
-                  Container(margin: EdgeInsets.only(bottom: 20.0),),
-                  buttonField(),
-                ],
-              ),
-            ),
-          )
+
+    final bloc = Provider.of(context);
+
+      return Container(
+      margin: EdgeInsets.all(20.0),
+      child: Form(
+        key: formKey,
+        child: Column(
+          children: [
+            Container(margin: EdgeInsets.only(bottom: 20.0),),
+            emailField(bloc),
+            Container(margin: EdgeInsets.only(bottom: 20.0),),
+            passwordField(bloc),
+            Container(margin: EdgeInsets.only(bottom: 20.0),),
+            buttonField(),
+          ],
         ),
-      );
+      ),
+    );
   }
 
-  Widget emailField() {
+  Widget emailField(Bloc bloc) {
     return StreamBuilder(
       stream: bloc.email,
       builder: (context, snapshot) {
@@ -60,7 +57,7 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin{
     );
   }
 
-  Widget passwordField() {
+  Widget passwordField(Bloc bloc) {
       return StreamBuilder(
         stream: bloc.password,
         builder: (context, snapshot) {

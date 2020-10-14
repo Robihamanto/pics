@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:pics/src/blocs/Provider.dart';
 import 'package:pics/src/screens/login_screen.dart';
 
-class App extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return AppState();
-  }
-}
-
-class AppState extends State<App> {
+class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-//    return GalleryScreen();
-    return LoginScreen();
+    return Provider(
+      child: MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(
+              title: Text('Do Login'),
+            ),
+            body: LoginScreen(),
+        ),
+      ),
+    );
   }
 }
