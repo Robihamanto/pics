@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pics/src/scenes/gallery_scene.dart';
-import 'package:pics/src/scenes/login_scene.dart';
+import 'package:pics/src/screens/login_screen.dart';
 
 class App extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-//    return GalleryScene();
-    return LoginScene();
+//    return GalleryScreen();
+    return LoginScreen();
   }
 }

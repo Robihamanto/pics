@@ -2,16 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pics/src/mixins/validation_mixin.dart';
 
-class LoginScene extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return LoginSceneState();
+    return LoginScreenState();
   }
 
 }
 
-class LoginSceneState extends State<LoginScene> with ValidationMixin{
+class LoginScreenState extends State<LoginScreen> with ValidationMixin{
 
   final formKey = GlobalKey<FormState>();
 

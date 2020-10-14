@@ -6,17 +6,17 @@ import 'package:http/http.dart';
 import 'package:pics/src/models/image_model.dart';
 import 'package:pics/src/widgets/image_list.dart';
 
-class GalleryScene extends StatefulWidget {
+class GalleryScreen extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return GallerySceneState();
+    return GalleryScreenState();
   }
 
 }
 
 
-class GallerySceneState extends State<GalleryScene> {
+class GalleryScreenState extends State<GalleryScreen> {
 
   var counter = 1;
   List<ImageModel> images = [];
