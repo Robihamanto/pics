@@ -4,24 +4,46 @@ import 'package:pics/src/resources/hackernews_services.dart';
 
 class Repository {
 
-  NewsService apiService = NewsService();
-  NewsDBService dbService = NewsDBService();
+  List<Source> sources = [
+    newsDBService,
+    NewsService(),
+  ];
+
+  List<Cache> caches = [
+    NewsDBService(),
+  ];
 
   Future<List<int>> fetchTopNews() {
-    return apiService.fetchTopNews();
+    return sources[1].fetchTopNews();
   }
 
   Future<ItemModel> fetchNews(int id) async {
+    ItemModel item;
 
-    var item = await dbService.fetchNews(id);
-    if (item != null) {
-      return item;
+    for (final source in sources) {
+      item = await source.fetchNews(id);
+      if (item != null) {
+        for (final cache in caches) {
+          cache.addItem(item);
+        }
+          break;
+      }
     }
-
-    item = await dbService.fetchNews(id);
-    dbService.addItem(item);
 
     return item;
   }
+
+}
+
+abstract class Source {
+
+  Future<List<int>> fetchTopNews();
+  Future<ItemModel> fetchNews(int id);
+
+}
+
+abstract class Cache {
+
+  Future<int> addItem(ItemModel item);
 
 }

@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' show Client;
 import 'package:pics/src/models/item_model.dart';
+import 'package:pics/src/resources/repository.dart';
 
-class NewsService {
+class NewsService implements Source {
 
   var client = Client();
   var _baseUrl = 'https://hacker-news.firebaseio.com/v0/';
@@ -13,7 +14,7 @@ class NewsService {
     return ids.cast<int>();
   }
 
-  Future<ItemModel> fetchItemByID(int id) async {
+  Future<ItemModel> fetchNews(int id) async {
     final response = await client.get('$_baseUrl/item/$id.json');
     final parsedJson = json.decode(response.body);
 

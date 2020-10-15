@@ -24,7 +24,7 @@ void main() {
       return Response(json.encode(jsonMap), 200);
     });
 
-    final news = await service.fetchItemByID(123);
+    final news = await service.fetchNews(123);
     expect(news.id, 123);
   });
 

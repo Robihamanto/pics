@@ -1,10 +1,11 @@
 import 'package:path_provider/path_provider.dart';
 import 'package:pics/src/models/item_model.dart';
+import 'package:pics/src/resources/repository.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:io';
 import 'package:path/path.dart';
 
-class NewsDBService {
+class NewsDBService implements Source, Cache {
   Database db;
 
   void init() async {
@@ -54,4 +55,10 @@ class NewsDBService {
     return db.insert("Items", item.toMap(item));
   }
 
+  Future<List<int>> fetchTopNews() {
+    return null;
+  }
+
 }
+
+final newsDBService = NewsDBService();
