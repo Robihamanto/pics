@@ -13,7 +13,7 @@ void main() {
       return Response(json.encode([1,2,3,4]), 200);
     });
 
-    final newsIDs = await service.fetchTopIDs();
+    final newsIDs = await service.fetchTopNews();
     expect(newsIDs, [1,2,3,4]);
   });
 
