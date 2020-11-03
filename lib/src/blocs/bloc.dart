@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:pics/src/blocs/validators.dart';
 import 'package:rxdart/rxdart.dart';
 
+
 class Bloc extends Validators{
 
   final _email = BehaviorSubject<String>();

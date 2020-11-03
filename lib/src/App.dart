@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:pics/src/blocs/Provider.dart';
-import 'package:pics/src/screens/login_screen.dart';
+import 'package:pics/src/blocs/stories/stories_provider.dart';
+import 'package:pics/src/screens/news_screen.dart';
 
 class App extends StatelessWidget {
 
-  @override
   Widget build(BuildContext context) {
-    return Provider(
+    return StoriesProvider(
       child: MaterialApp(
-        home: Scaffold(
-            appBar: AppBar(
-              title: Text('Do Login'),
-            ),
-            body: LoginScreen(),
-        ),
-      ),
-    );
+        title: "News!",
+        home: NewsList(),
+      )
+      ,);
   }
+
 }
